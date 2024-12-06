@@ -6,18 +6,32 @@ describe "recurring event" do
 
   it "my friend mark" do
     mark = Person.new("mark")
-    mark.add_evt(Event.new("1st and 3rd mon of month", "gastro clinic"))
-    mark.add_evt(Event.new("2nd wed of month", "liver clinic"))
-    mark.add_evt(Event.new("every mon", "golf games"))
-    p mark.events
+    scd = Schedule.new
+    scd.add_evt(Event.new("1st and 3rd mon of month", "gastro clinic"))
+    scd.add_evt(Event.new("2nd wed of month", "liver clinic"))
+    scd.add_evt(Event.new("every mon", "golf games"))
+    mark.add_schedule scd
+    p mark.schedule
   end
 end
 
 class Person
-  attr_reader :events
+  attr_reader :schedule
 
   def initialize name
     @name = name
+    @schedule = []
+  end
+
+  def add_schedule scd
+    @schedule << scd
+  end
+end
+
+class Schedule
+  attr_reader :events
+
+  def initialize
     @events = []
   end
 
