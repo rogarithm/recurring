@@ -1,6 +1,8 @@
 require_relative '../lib/person'
 require_relative '../lib/schedule'
 require_relative '../lib/event'
+require_relative '../lib/schedule_elem'
+require_relative '../lib/temporal_expr'
 
 describe "recurring event" do
   it "street cleaning outside my old house occurs on the first and third Monday of the month" do
@@ -11,9 +13,24 @@ describe "recurring event" do
   it "my friend mark" do
     mark = Person.new("mark")
     scd = Schedule.new
-    scd.add_evt(Event.new("1st and 3rd mon of month", "gastro clinic"))
-    scd.add_evt(Event.new("2nd wed of month", "liver clinic"))
-    scd.add_evt(Event.new("every mon", "golf games"))
+    scd.add_elem(
+      ScheduleElem.new(
+        Event.new("1st and 3rd mon of month", "gastro clinic"),
+        TemporalExpr.new
+      )
+    )
+    scd.add_elem(
+      ScheduleElem.new(
+        Event.new("2nd wed of month", "liver clinic"),
+        TemporalExpr.new
+      )
+    )
+    scd.add_elem(
+      ScheduleElem.new(
+        Event.new("every mon", "golf games"),
+        TemporalExpr.new
+      )
+    )
     mark.add_schedule scd
     p mark.schedule
   end
