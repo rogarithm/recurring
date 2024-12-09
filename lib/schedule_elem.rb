@@ -5,7 +5,7 @@ class ScheduleElem
   end
 
   def is_occurring evt_arg, date
-    if @evt == evt_arg
+    if @evt.desc == evt_arg.desc
       return @temporal_expr.includes(date)
     end
     false

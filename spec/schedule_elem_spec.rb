@@ -47,11 +47,9 @@ describe "schedule element" do
   it "주어진 날짜에 찾으려는 이벤트가 예정되어 있는지 알 수 있다" do
     schedule_elem = ScheduleElem.new(
       Event.new("every mon", "golf games"),
-      TemporalExpr.new
+      DayInMonth.new(1, 1)
     )
 
-    allow(schedule_elem).to receive(:is_occurring) {true}
-
-    expect(schedule_elem.is_occurring("golf games", "2024-12-02")).to eq(true)
+    expect(schedule_elem.is_occurring(Event.new("every mon", "golf games"), Date.new(2024,12,2))).to eq(true)
   end
 end
