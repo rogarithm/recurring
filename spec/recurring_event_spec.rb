@@ -1,3 +1,7 @@
+require_relative '../lib/person'
+require_relative '../lib/schedule'
+require_relative '../lib/event'
+
 describe "recurring event" do
   it "street cleaning outside my old house occurs on the first and third Monday of the month" do
   end
@@ -6,33 +10,11 @@ describe "recurring event" do
 
   it "my friend mark" do
     mark = Person.new("mark")
-    mark.add_evt(Event.new("1st and 3rd mon of month", "gastro clinic"))
-    mark.add_evt(Event.new("2nd wed of month", "liver clinic"))
-    mark.add_evt(Event.new("every mon", "golf games"))
-    p mark.events
-  end
-end
-
-class Person
-  attr_reader :events
-
-  def initialize name
-    @name = name
-    @events = []
-  end
-
-  def add_evt evt
-    @events << evt
-  end
-end
-
-class Event
-  def initialize occurrences, desc
-    @occurrences = conv2dates(occurrences)
-    @desc = desc
-  end
-
-  def conv2dates ocrs
-    ocrs
+    scd = Schedule.new
+    scd.add_evt(Event.new("1st and 3rd mon of month", "gastro clinic"))
+    scd.add_evt(Event.new("2nd wed of month", "liver clinic"))
+    scd.add_evt(Event.new("every mon", "golf games"))
+    mark.add_schedule scd
+    p mark.schedule
   end
 end
