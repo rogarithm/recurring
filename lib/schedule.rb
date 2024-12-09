@@ -13,11 +13,11 @@ class Schedule
 
   end
 
-  def nextOccurrence evt_arg, date
+  def next_occurrence evt_arg, date
 
   end
 
-  def isOccurring evt_arg, date
+  def is_occurring evt_arg, date
 
   end
 end

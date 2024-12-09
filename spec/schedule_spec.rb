@@ -28,7 +28,7 @@ describe "schedule 객체는" do
         TemporalExpr.new
       )
     )
-    scd.nextOccurrence("gastro clinic", "2024-11-10")
+    scd.next_occurrence("gastro clinic", "2024-11-10")
     # should return next 1st or 3rd monday
   end
 
@@ -40,7 +40,7 @@ describe "schedule 객체는" do
         TemporalExpr.new
       )
     )
-    scd.isOccurring("golf games", "2024-12-02")
+    scd.is_occurring("golf games", "2024-12-02")
     # should return true, because 2024-12-02 is monday
   end
 end
