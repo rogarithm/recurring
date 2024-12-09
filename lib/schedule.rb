@@ -18,6 +18,11 @@ class Schedule
   end
 
   def is_occurring evt_arg, date
-
+    @scd_elems.each do |scd_elem|
+      if scd_elem.is_occurring evt_arg, date
+        return true
+      end
+    end
+    false
   end
 end
