@@ -1,12 +1,12 @@
 class ScheduleElem
-  def initialize evt, temporal_expr
+  def initialize evt, tpr_expr
     @evt = evt
-    @temporal_expr = temporal_expr
+    @tpr_expr = tpr_expr
   end
 
   def is_occurring evt_arg, date
     if @evt.desc == evt_arg.desc
-      return @temporal_expr.includes(date)
+      return @tpr_expr.includes(date)
     end
     false
   end
