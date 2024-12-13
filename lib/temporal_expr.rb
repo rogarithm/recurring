@@ -6,8 +6,18 @@ end
 
 class DayInMonth < TemporalExpr
   def initialize day_idx, cnt
-    @day_idx = day_idx
-    @cnt = cnt
+    @day_idx = validate_day_idx day_idx
+    @cnt = validate_cnt cnt
+  end
+
+  def validate_day_idx arg
+    raise "day_idx must be between 1 and 7" if arg < 1 or arg > 7
+    arg
+  end
+
+  def validate_cnt arg
+    raise "cnt must be between 1 and 31" if arg == 0 or arg > 5 or arg < -5
+    arg
   end
 
   def includes date
