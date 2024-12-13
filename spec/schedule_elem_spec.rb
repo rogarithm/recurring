@@ -1,9 +1,7 @@
 require_relative './helpers/spec_helper'
 
 describe "schedule element" do
-  it "각 event에 대한 schedule element를 schedule 객체에 전달한다" do
-
-  end
+  it "각 event에 대한 schedule element를 schedule 객체에 전달한다"
 
   it "주어진 기간 내에 찾으려는 이벤트가 예정된 날짜 목록을 알 수 있다" do
     # scd = Schedule.new

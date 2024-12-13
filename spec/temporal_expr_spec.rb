@@ -3,13 +3,8 @@ require_relative './helpers/spec_helper'
 
 describe "temporal expression" do
   context "temporal expression 구현 방식을 정의한다" do
-    it "주어진 날이 자신(temporal expr)에 속하는지 판단할 수 있다" do
-
-    end
-
-    it "기본 메서드를 갖는 temporal expr이 있고, 더 세부적인 질문에 답할 수 있는 메서드를 갖는 temporal expr의 구현 클래스가 있다" do
-
-    end
+    it "주어진 날이 자신(temporal expr)에 속하는지 판단할 수 있다"
+    it "기본 메서드를 갖는 temporal expr이 있고, 더 세부적인 질문에 답할 수 있는 메서드를 갖는 temporal expr의 구현 클래스가 있다"
   end
 
   context "day every month temporal expr을 정의할 수 있다" do
