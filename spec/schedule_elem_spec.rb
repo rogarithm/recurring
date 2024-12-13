@@ -1,12 +1,7 @@
+require_relative './helpers/spec_helper'
+
 describe "schedule element" do
-  RSpec.configure do |config|
-    config.filter_run_when_matching(focus: true)
-    config.example_status_persistence_file_path = 'spec/pass_fail_history'
-  end
-
-  it "각 event에 대한 schedule element를 schedule 객체에 전달한다" do
-
-  end
+  it "각 event에 대한 schedule element를 schedule 객체에 전달한다"
 
   it "주어진 기간 내에 찾으려는 이벤트가 예정된 날짜 목록을 알 수 있다" do
     # scd = Schedule.new
@@ -45,11 +40,16 @@ describe "schedule element" do
   end
 
   it "주어진 날짜에 찾으려는 이벤트가 예정되어 있는지 알 수 있다" do
-    schedule_elem = ScheduleElem.new(
+    scd_elem = ScheduleElem.new(
       Event.new("every mon", "golf games"),
       DayInMonth.new(1, 1)
     )
 
-    expect(schedule_elem.is_occurring(Event.new("every mon", "golf games"), Date.new(2024,12,2))).to eq(true)
+    expect(
+      scd_elem.is_occurring(
+        Event.new("every mon", "golf games"),
+        Date.new(2024,12,2)
+      )
+    ).to eq(true)
   end
 end

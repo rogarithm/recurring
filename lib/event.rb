@@ -1,8 +1,8 @@
 class Event
   attr_reader :occurrences, :desc
 
-  def initialize occurrences, desc
-    @occurrences = conv2dates(occurrences)
+  def initialize ocrs, desc
+    @occurrences = conv2dates(ocrs)
     @desc = desc
   end
 
