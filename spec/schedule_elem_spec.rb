@@ -32,14 +32,17 @@ describe "schedule element" do
 
   it "주어진 날짜 다음에 찾으려는 이벤트가 예정된 날짜를 알 수 있다" do
     scd_elem = ScheduleElem.new(
-      Event.new("1st mon of month", "gastro clinic"),
-      DayInMonth.new(1, 1)
+      Event.new("2nd tue of month", "gastro clinic"),
+      DayInMonth.new(2, 2)
     )
 
-    allow(scd_elem).to receive(:next_occurrence).and_return("2024-12-02")
+    # allow(scd_elem).to receive(:next_occurrence).and_return("2024-11-12")
     expect(
-      scd_elem.next_occurrence("gastro clinic", "2024-11-10")
-    ).to eq("2024-12-02")
+      scd_elem.next_occurrence(
+        Event.new("2nd tue of month", "gastro clinic"),
+        Date.new(2024,11,10)
+      )
+    ).to eq(Date.new(2024,11,12))
   end
 
   it "주어진 날짜에 찾으려는 이벤트가 예정되어 있는지 알 수 있다" do

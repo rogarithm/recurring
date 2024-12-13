@@ -26,14 +26,14 @@ describe "schedule 객체는" do
     scd_elem = double()
     scd.add_elem(scd_elem)
 
-    allow(scd).to receive(:next_occurrence).and_return("2024-11-18")
+    allow(scd).to receive(:next_occurrence).and_return(Date.new(2024,11,12))
 
     expect(
       scd.next_occurrence(
-        Event.new("1st and 3rd mon of month", "gastro clinic"),
-        "2024-11-10"
+        Event.new("2nd tue of month", "gastro clinic"),
+        Date.new(2024,11,10)
       )
-    ).to eq("2024-11-18")
+    ).to eq(Date.new(2024,11,12))
     # should return next 1st or 3rd monday
   end
 
