@@ -9,12 +9,25 @@ describe "schedule element" do
       DayInMonth.new(1, 1)
     )
 
-    allow(scd_elem).to receive(:occurrences).and_return(["2024-11-04","2024-12-02"])
     expect(
-      scd_elem.occurrences("golf games", ["2024-11-03", "2024-12-05"])
+      scd_elem.occurrences(
+        Event.new("1st mon of month", "golf games"),
+        ["2024-11-03", "2024-12-05"]
+      )
     ).to eq(
       ["2024-11-04", "2024-12-02"]
     )
+  end
+
+  it "daterange 내에 속한 날짜를 가져올 수 있다" do
+    date_range = ["2024-11-03", "2024-12-05"]
+    stt_date, end_date = date_range.map!{|d| Date.new(*d.split("-").map(&:to_i))}
+    res = []
+    stt_date.upto(end_date) do |d|
+      res << d
+    end
+    expect(res[0].to_s).to eq("2024-11-03")
+    expect(res[-1].to_s).to eq("2024-12-05")
   end
 
   it "주어진 날짜 다음에 찾으려는 이벤트가 예정된 날짜를 알 수 있다" do

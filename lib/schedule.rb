@@ -10,7 +10,12 @@ class Schedule
   end
 
   def occurrences evt_arg, date_range
-
+    res = []
+    @scd_elems.each do |scd_elem|
+      ocrs = scd_elem.occurrences evt_arg, date_range
+      res << ocrs unless ocrs.nil?
+    end
+    res
   end
 
   def next_occurrence evt_arg, date

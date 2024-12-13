@@ -5,7 +5,12 @@ class ScheduleElem
   end
 
   def occurrences evt_arg, date_range
-
+    stt_date, end_date = date_range.map!{|d| Date.new(*d.split("-").map(&:to_i))}
+    dates = []
+    stt_date.upto(end_date) do |d|
+      dates << d if is_occurring evt_arg, d
+    end
+    dates.map{|d| d.to_s}
   end
 
   def next_occurrence evt_arg, date
