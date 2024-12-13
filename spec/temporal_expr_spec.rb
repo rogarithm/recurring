@@ -8,7 +8,22 @@ describe "temporal expression" do
   end
 
   context "day in month temporal expr을 정의할 수 있다" do
-    # day of week와 count를 인자로 받는다
+    it "인자로 받는 day_idx는 요일을 나타내고 1부터 7까지의 값이 올 수 있다" do
+      invalid_args = [[0, 1], [8, 1]]
+
+      invalid_args.each do |arg|
+        expect{DayInMonth.new(*arg)}.to raise_error(RuntimeError)
+      end
+    end
+
+    it "인자로 받는 cnt는 몇번째 주인지를 나타내고 1~5 또는 -1~-5 까지의 값이 올 수 있다" do
+      invalid_args = [[1, 0], [1, 6], [1, -6]]
+
+      invalid_args.each do |arg|
+        expect{DayInMonth.new(*arg)}.to raise_error(RuntimeError)
+      end
+    end
+
     it "주어진 date의 요일을 알 수 있다" do
       monday_in_1st_week = DayInMonth.new(1, 1)
       monday = Date.new(2024, 11, 11)
