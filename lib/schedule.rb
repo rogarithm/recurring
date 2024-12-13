@@ -19,7 +19,10 @@ class Schedule
   end
 
   def next_occurrence evt_arg, date
-
+    @scd_elems.each do |scd_elem|
+      next_ocr = scd_elem.next_occurrence evt_arg, date
+      return next_ocr unless next_ocr
+    end
   end
 
   def is_occurring evt_arg, date

@@ -14,7 +14,12 @@ class ScheduleElem
   end
 
   def next_occurrence evt_arg, date
-
+    date_next_mon = date.next_month
+    end_date_next_mon = Date.new(date_next_mon.year, date_next_mon.mon, -1)
+    date.next_day.upto(end_date_next_mon) do |d|
+      return d if is_occurring evt_arg, d
+    end
+    nil
   end
 
   def is_occurring evt_arg, date
