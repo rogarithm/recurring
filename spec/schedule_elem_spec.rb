@@ -42,11 +42,16 @@ describe "schedule element" do
   end
 
   it "주어진 날짜에 찾으려는 이벤트가 예정되어 있는지 알 수 있다" do
-    schedule_elem = ScheduleElem.new(
+    scd_elem = ScheduleElem.new(
       Event.new("every mon", "golf games"),
       DayInMonth.new(1, 1)
     )
 
-    expect(schedule_elem.is_occurring(Event.new("every mon", "golf games"), Date.new(2024,12,2))).to eq(true)
+    expect(
+      scd_elem.is_occurring(
+        Event.new("every mon", "golf games"),
+        Date.new(2024,12,2)
+      )
+    ).to eq(true)
   end
 end
