@@ -8,12 +8,15 @@ describe "schedule 객체는" do
     scd_elem = double()
     scd.add_elem(scd_elem)
 
-    allow(scd).to receive(:occurrences) {["2024-11-18","2024-11-25","2024-12-02"]}
+    allow(scd).to receive(:occurrences).and_return(["2024-11-04", "2024-12-02"])
 
     expect(
-      scd.occurrences("golf games", ["2024-11-10","2024-12-03"])
+      scd.occurrences(
+        Event.new("every mon", "golf games"),
+        ["2024-11-03", "2024-12-05"]
+      )
     ).to eq(
-      ["2024-11-18","2024-11-25","2024-12-02"]
+      ["2024-11-04", "2024-12-02"]
     )
     # should return uniq set of mondays from given date range
   end
@@ -23,11 +26,12 @@ describe "schedule 객체는" do
     scd_elem = double()
     scd.add_elem(scd_elem)
 
-    allow(scd).to receive(:next_occurrence) {"2024-11-18"}
+    allow(scd).to receive(:next_occurrence).and_return("2024-11-18")
 
     expect(
       scd.next_occurrence(
-        "gastro clinic", "2024-11-10"
+        Event.new("1st and 3rd mon of month", "gastro clinic"),
+        "2024-11-10"
       )
     ).to eq("2024-11-18")
     # should return next 1st or 3rd monday
@@ -38,7 +42,7 @@ describe "schedule 객체는" do
     scd_elem = double()
     scd.add_elem(scd_elem)
 
-    allow(scd).to receive(:is_occurring) {true}
+    allow(scd).to receive(:is_occurring).and_return(true)
 
     expect(
       scd.is_occurring(
