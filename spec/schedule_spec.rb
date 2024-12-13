@@ -8,15 +8,15 @@ describe "schedule 객체는" do
     scd_elem = double()
     scd.add_elem(scd_elem)
 
-    allow(scd).to receive(:occurrences).and_return(["2024-11-04", "2024-12-02"])
+    allow(scd).to receive(:occurrences).and_return([Date.new(2024,11,04), Date.new(2024,12,02)])
 
     expect(
       scd.occurrences(
         Event.new("every mon", "golf games"),
-        ["2024-11-03", "2024-12-05"]
+        [Date.new(2024,11,3), Date.new(2024,12,05)]
       )
     ).to eq(
-      ["2024-11-04", "2024-12-02"]
+      [Date.new(2024,11,04), Date.new(2024,12,02)]
     )
     # should return uniq set of mondays from given date range
   end

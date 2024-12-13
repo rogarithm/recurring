@@ -12,22 +12,22 @@ describe "schedule element" do
     expect(
       scd_elem.occurrences(
         Event.new("1st mon of month", "golf games"),
-        ["2024-11-03", "2024-12-05"]
+        [Date.new(2024,11,3), Date.new(2024,12,5)]
       )
     ).to eq(
-      ["2024-11-04", "2024-12-02"]
+      [Date.new(2024,11,4), Date.new(2024,12,2)]
     )
   end
 
   it "daterange 내에 속한 날짜를 가져올 수 있다" do
-    date_range = ["2024-11-03", "2024-12-05"]
-    stt_date, end_date = date_range.map!{|d| Date.new(*d.split("-").map(&:to_i))}
+    date_range = [Date.new(2024,11,3), Date.new(2024,12,5)]
+    stt_date, end_date = date_range[0], date_range[1]
     res = []
     stt_date.upto(end_date) do |d|
       res << d
     end
-    expect(res[0].to_s).to eq("2024-11-03")
-    expect(res[-1].to_s).to eq("2024-12-05")
+    expect(res[0]).to eq(Date.new(2024,11,3))
+    expect(res[-1]).to eq(Date.new(2024,12,5))
   end
 
   it "주어진 날짜 다음에 찾으려는 이벤트가 예정된 날짜를 알 수 있다" do
