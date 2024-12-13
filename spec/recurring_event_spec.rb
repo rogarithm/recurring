@@ -32,6 +32,6 @@ describe "recurring event" do
       )
     )
     mark.add_schedule scd
-    p mark.schedule
+    # TODO expectation required!
   end
 end

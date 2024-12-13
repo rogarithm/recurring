@@ -7,12 +7,6 @@ describe "schedule 객체는" do
     scd = Schedule.new
     scd_elem = double()
     scd.add_elem(scd_elem)
-    # scd.add_elem(
-    #   ScheduleElem.new(
-    #     Event.new("every mon", "golf games"),
-    #     TemporalExpr.new
-    #   )
-    # )
 
     allow(scd).to receive(:occurrences) {["2024-11-18","2024-11-25","2024-12-02"]}
 
@@ -28,12 +22,6 @@ describe "schedule 객체는" do
     scd = Schedule.new
     scd_elem = double()
     scd.add_elem(scd_elem)
-    # scd.add_elem(
-    #   ScheduleElem.new(
-    #     Event.new("1st and 3rd mon of month", "gastro clinic"),
-    #     TemporalExpr.new
-    #   )
-    # )
 
     allow(scd).to receive(:next_occurrence) {"2024-11-18"}
 
@@ -49,12 +37,6 @@ describe "schedule 객체는" do
     scd = Schedule.new
     scd_elem = double()
     scd.add_elem(scd_elem)
-    # scd.add_elem(
-    #   ScheduleElem.new(
-    #     Event.new("every mon", "golf games"),
-    #     DayInMonth.new(1, 1)
-    #   )
-    # )
 
     allow(scd).to receive(:is_occurring) {true}
 
