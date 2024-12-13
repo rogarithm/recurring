@@ -1,12 +1,8 @@
 require_relative '../lib/schedule'
 require_relative '../lib/event'
+require_relative './helpers/spec_helper'
 
 describe "schedule 객체는" do
-  RSpec.configure do |config|
-    config.filter_run_when_matching(focus: true)
-    config.example_status_persistence_file_path = 'spec/pass_fail_history'
-  end
-
   it "주어진 기간 내에 찾으려는 이벤트가 예정된 날짜 목록을 알 수 있다" do
     scd = Schedule.new
     schedule_elem = double()

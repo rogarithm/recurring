@@ -3,6 +3,7 @@ require_relative '../lib/schedule'
 require_relative '../lib/event'
 require_relative '../lib/schedule_elem'
 require_relative '../lib/temporal_expr'
+require_relative './helpers/spec_helper'
 
 describe "recurring event" do
   it "street cleaning outside my old house occurs on the first and third Monday of the month" do

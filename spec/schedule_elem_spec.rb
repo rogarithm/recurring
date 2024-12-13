@@ -1,9 +1,6 @@
-describe "schedule element" do
-  RSpec.configure do |config|
-    config.filter_run_when_matching(focus: true)
-    config.example_status_persistence_file_path = 'spec/pass_fail_history'
-  end
+require_relative './helpers/spec_helper'
 
+describe "schedule element" do
   it "각 event에 대한 schedule element를 schedule 객체에 전달한다" do
 
   end

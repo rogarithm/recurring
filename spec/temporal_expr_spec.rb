@@ -1,11 +1,7 @@
 require 'date'
+require_relative './helpers/spec_helper'
 
 describe "temporal expression" do
-  RSpec.configure do |config|
-    config.filter_run_when_matching(focus: true)
-    config.example_status_persistence_file_path = 'spec/pass_fail_history'
-  end
-
   it "주어진 날이 자신(temporal expr)에 속하는지 판단할 수 있다" do
 
   end
