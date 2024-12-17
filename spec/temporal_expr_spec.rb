@@ -1,6 +1,8 @@
 require 'date'
 
-require_relative '../lib/temporal_expr'
+require_relative '../lib/temporal/temporal_expr'
+require_relative '../lib/temporal/range_each_year'
+require_relative '../lib/temporal/day_in_month'
 require_relative './helpers/spec_helper'
 
 describe "temporal expression" do
