@@ -1,4 +1,6 @@
 require 'date'
+
+require_relative '../lib/temporal_expr'
 require_relative './helpers/spec_helper'
 
 describe "temporal expression" do
@@ -82,5 +84,65 @@ describe "temporal expression" do
 
   context "range every year temporal expr을 정의할 수 있다" do
     # 시작과 끝에 해당하는 day, month를 인자로 받는다
+
+    it "months_include: 정의한 시작 월일과 끝 월일이 주어진 날짜를 포함하는지 알 수 있다" do
+      from_mar_14_to_sep_12 = RangeEachYear.new(3, 9, 14, 12)
+      expect(from_mar_14_to_sep_12.months_include Date.new(2024, 11, 11)).to eq(false)
+      expect(from_mar_14_to_sep_12.months_include Date.new(2024, 4, 15)).to eq(true)
+    end
+
+    it "stt_month_includes: 정의한 시작 월이 주어진 날짜를 포함하는지 알 수 있다" do
+      from_mar_14_to_sep_12 = RangeEachYear.new(3, 9, 14, 12)
+      before_stt = Date.new(2024, 3, 11)
+      expect(from_mar_14_to_sep_12.stt_month_includes before_stt).to eq(false)
+      in_stt = Date.new(2024, 3, 14)
+      expect(from_mar_14_to_sep_12.stt_month_includes in_stt).to eq(true)
+      after_stt = Date.new(2024, 3, 30)
+      expect(from_mar_14_to_sep_12.stt_month_includes after_stt).to eq(true)
+      after_stt_mon = Date.new(2024, 4, 30)
+      expect(from_mar_14_to_sep_12.stt_month_includes after_stt_mon).to eq(false)
+    end
+
+    it "stt_month_includes: 시작일과 끝일이 0인 경우, 주어진 날짜의 시작 월만 같으면 참이다" do
+      from_mar_14_to_sep_12 = RangeEachYear.new(3, 9)
+      before_stt = Date.new(2024, 3, 1)
+      expect(from_mar_14_to_sep_12.stt_month_includes before_stt).to eq(true)
+      after_stt = Date.new(2024, 3, 30)
+      expect(from_mar_14_to_sep_12.stt_month_includes after_stt).to eq(true)
+      after_stt_mon = Date.new(2024, 4, 30)
+      expect(from_mar_14_to_sep_12.stt_month_includes after_stt_mon).to eq(false)
+    end
+
+    it "end_month_includes: 정의한 끝 월이 주어진 날짜를 포함하는지 알 수 있다" do
+      from_mar_14_to_sep_12 = RangeEachYear.new(3, 9, 14, 12)
+      mon_before_end_mon = Date.new(2024, 8, 11)
+      expect(from_mar_14_to_sep_12.end_month_includes mon_before_end_mon).to eq(false)
+      mon_after_end_mon = Date.new(2024, 10, 30)
+      expect(from_mar_14_to_sep_12.end_month_includes mon_after_end_mon).to eq(false)
+
+      day_before_end_day = Date.new(2024, 9, 10)
+      expect(from_mar_14_to_sep_12.end_month_includes day_before_end_day).to eq(true)
+      day_after_end_day = Date.new(2024, 9, 30)
+      expect(from_mar_14_to_sep_12.end_month_includes day_after_end_day).to eq(false)
+      after_end_mon = Date.new(2024, 10, 30)
+      expect(from_mar_14_to_sep_12.end_month_includes after_end_mon).to eq(false)
+    end
+
+    it "includes: 주어진 날짜가 range every year temporal expr이 정의하는 범위 내에 속하는지 알 수 있다" do
+      from_mar_14_to_sep_12 = RangeEachYear.new(3, 9, 14, 12)
+
+      before_range, after_range = Date.new(2024, 2, 28), Date.new(2024, 10, 10)
+      falsy = [before_range, after_range]
+      in_range = Date.new(2024, 3, 28)
+      truesy = [in_range]
+
+      falsy.each do |d|
+        expect(from_mar_14_to_sep_12.includes d).to eq(false)
+      end
+
+      truesy.each do |d|
+        expect(from_mar_14_to_sep_12.includes d).to eq(true)
+      end
+    end
   end
 end
