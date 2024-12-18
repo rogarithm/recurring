@@ -2,7 +2,7 @@ require_relative '../lib/person'
 require_relative '../lib/schedule'
 require_relative '../lib/event'
 require_relative '../lib/schedule_elem'
-require_relative '../lib/temporal/temporal_expr'
+require_relative '../lib/tmpr_expr/temporal_expr'
 require_relative './helpers/spec_helper'
 
 describe "recurring event" do
