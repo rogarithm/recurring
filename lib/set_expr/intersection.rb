@@ -1,4 +1,5 @@
 require_relative './collection'
+
 class Intersection < Collection
   attr_reader :elems
 

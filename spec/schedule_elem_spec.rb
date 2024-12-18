@@ -58,4 +58,48 @@ describe "schedule element" do
       )
     ).to eq(true)
   end
+
+  it "tmpr_expr에 set_expr이 올 수 있다" do
+    union = Union.new
+    union.add_elem DayInMonth.new(1, 1)
+    union.add_elem DayInMonth.new(1, 3)
+
+    scd_elem = ScheduleElem.new(
+      Event.new("1st or 3rd mon of month", "golf games"),
+      union
+    )
+
+    [Date.new(2024, 12, 2), Date.new(2024, 12, 16)].each do |d|
+      expect(
+        scd_elem.is_occurring(
+          Event.new("1st or 3rd mon of month", "golf games"),
+          d
+        )
+      ).to eq(true)
+    end
+
+
+    intersection = Intersection.new
+    intersection.add_elem(DayInMonth.new(1, -1))
+    intersection.add_elem(RangeEachYear.new(5, 5))
+
+    memorial_days = [[2022, 5, 30], [2023, 5, 29], [2024, 5, 27]]
+                           .inject([]) { |res, y_m_d|
+                             res << Date.new(y_m_d[0], y_m_d[1], y_m_d[2])
+                           }
+
+    scd_elem = ScheduleElem.new(
+      Event.new("last monday in May", "The US holiday of memorial day"),
+      intersection
+    )
+
+    memorial_days.each {|d|
+      expect(
+        scd_elem.is_occurring(
+          Event.new("last monday in May", "The US holiday of memorial day"),
+          d
+        )
+      ).to eq(true)
+    }
+  end
 end
