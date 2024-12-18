@@ -1,9 +1,3 @@
-class TemporalExpr
-  def includes date
-    raise 'this method should be overriden'
-  end
-end
-
 class DayInMonth < TemporalExpr
   def initialize day_idx, cnt
     @day_idx = validate_day_idx day_idx
