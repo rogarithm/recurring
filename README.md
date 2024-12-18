@@ -5,15 +5,15 @@
 
 ## 클래스 다이어그램
 
-![클래스_다이어그램](./recurring-class-diagram.jpg)
+![클래스_다이어그램](./images/recurring-class-diagram.jpg)
 
 ## 메서드별 흐름도
 
 ### is_occurring: 이벤트와 날짜를 입력받아 주어진 날짜에 이벤트가 발생하는지 확인한다
-![is_occurring](./recurring-flow1.jpg)
+![is_occurring](./images/recurring-flow1.jpg)
 
 ### next_occurrence: 이벤트와 날짜를 받아 주어진 이벤트가 주어진 날짜 다음으로 발생하는 날짜를 반환한다
-![next_occurrence](./recurring-flow2.jpg)
+![next_occurrence](./images/recurring-flow2.jpg)
 
 ### occurrences: 이벤트와 기간(시작 날짜, 끝 날짜)을 받아 주어진 이벤트가 기간 사이에 발생하는 날짜 목록을 반환한다
-![occurrences](./recurring-flow3.jpg)
+![occurrences](./images/recurring-flow3.jpg)
