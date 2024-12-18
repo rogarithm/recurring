@@ -10,7 +10,7 @@ class DayInMonth < TemporalExpr
   end
 
   def validate_cnt arg
-    raise "cnt must be between 1 and 31" if arg == 0 or arg > 5 or arg < -5
+    raise "cnt must be between 1 and 4 or -1 and -4" if arg == 0 or arg > 5 or arg < -5
     arg
   end
 
