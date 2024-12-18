@@ -10,6 +10,7 @@ class Difference
     included.includes(date) and !excluded.includes(date)
   end
 
-  def excludes
+  def excludes date
+    excluded.includes(date)
   end
 end

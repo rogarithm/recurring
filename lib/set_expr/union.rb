@@ -1,3 +1,5 @@
+require_relative './collection'
+
 class Union < Collection
   attr_reader :elems
 
