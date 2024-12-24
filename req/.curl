@@ -1,0 +1,10 @@
+curl -X POST --location "http://localhost:4567/evt" \
+       -H "Content-Type: application/json" \
+       -d '{
+         "desc": "golf games",
+           "recur_type": "DayInMonth",
+           "recur_params": {
+             "day_idx": 1,
+             "cnt": 1
+           }
+       }'
