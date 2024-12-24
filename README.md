@@ -1,7 +1,11 @@
-## 반복 이벤트 처리 모듈
-- [notify-event 백엔드 애플리케이션](https://github.com/rogarithm/notify-event)에 쓸 목적으로 이벤트 등록 시 반복 이벤트를 처리하는 로직을 구현
-- [Martin Fowler의 글](https://martinfowler.dev.org.tw/apsupp/recurring.pdf)에 나온 내용을 참고해 루비로 구현
-- 루비로 먼저 구현 후 자바로 재구현할 예정
+## 프로젝트 설명
+- 이벤트 등록 시 반복 이벤트를 처리하는 모듈
+- [Martin Fowler의 글](https://martinfowler.dev.org.tw/apsupp/recurring.pdf)에 나온 내용을 루비로 구현
+
+## 프로젝트 진행 상황
+- [x] 반복 이벤트 구현 (x번째 주, y요일에 발생하는 월 기준 반복 이벤트, 시작 월일부터 끝 월일까지 지속되는 연 기준 반복 이벤트)
+- [x] 이벤트 관련 정보를 연산할 수 있는 메서드 정의
+- [x] 여러 개의 반복 이벤트 조건을 조합해 하나의 반복 이벤트를 만들 수 있는 객체 정의
 
 ## 클래스 다이어그램
 
