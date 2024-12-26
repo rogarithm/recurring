@@ -42,15 +42,16 @@ get "/evts" do
     :date => Date.new(*params[:date].split("-").map(&:to_i))
   }
 
-  rec_in_session = Marshal.load(session[:recur])
-  rec_in_session.schedules.each do |scd|
-    if scd.is_occurring req_hash[:evt_arg], req_hash[:date]
+  recur_in_session = Marshal.load(session[:recur])
+  recur_in_session.schedules.each do |scd|
+    if scd.is_occurring req[:evt_arg], req[:date]
       return {
-        :desc => "#{req_hash[:evt_arg]} occurs on #{req_hash[:date].to_s}"
+        :desc => "#{req[:evt_arg].desc} occurs on #{req[:date].to_s}"
       }.to_json
     end
   end
+
   {
-    :desc => "#{req_hash[:evt_arg].desc} not occurs on #{req_hash[:date].to_s}"
+    :desc => "#{req[:evt_arg].desc} not occurs on #{req[:date].to_s}"
   }.to_json
 end
