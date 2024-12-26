@@ -1,5 +1,6 @@
 require "sinatra"
 require "json"
+require "date"
 
 require_relative "recurring"
 require_relative "./recurring/event"
@@ -42,4 +43,21 @@ post "/evts" do
   session[:rec] = Marshal.dump(rec)
 end
 
+get "/evts" do
+  req_hash = {
+    :evt_arg => Recur::Event.new('', params[:evt_arg]),
+    :date => Date.new(*params[:date].split("-").map(&:to_i))
+  }
+
+  rec_in_session = Marshal.load(session[:rec])
+  rec_in_session.schedules.each do |scd|
+    if scd.is_occurring req_hash[:evt_arg], req_hash[:date]
+      return {
+        :desc => "#{req_hash[:evt_arg]} occurs on #{req_hash[:date].to_s}"
+      }.to_json
+    end
+  end
+  {
+    :desc => "#{req_hash[:evt_arg].desc} not occurs on #{req_hash[:date].to_s}"
+  }.to_json
 end
