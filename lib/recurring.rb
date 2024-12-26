@@ -1,13 +1,13 @@
 require_relative "./recurring/schedule"
 
 class Recurring
-  attr_reader :schedule
+  attr_reader :schedules
 
   def initialize
-    @schedule = []
+    @schedules = []
   end
 
   def add_schedule scd
-    @schedule << scd
+    @schedules << scd
   end
 end
