@@ -17,25 +17,19 @@ end
 
 # 반복 이벤트를 추가한다
 post "/evts" do
-  req = JSON.parse request.body.read
-  req_hash = {
-    :desc => req['desc'],
-    :recur_type => req['recur_type'],
-    :day_idx => req['recur_params']['day_idx'],
-    :cnt => req['recur_params']['cnt']
-  }
+  req = JSON.parse(request.body.read, symbolize_names: true)
   scd = Recur::Schedule.new
 
   tmpr_expr = nil
-  case req_hash[:recur_type]
+  case req[:recur_type]
   when "DayInMonth"
-    day_idx = req_hash[:day_idx].to_i
-    cnt = req_hash[:cnt].to_i
+    day_idx = req[:recur_params][:day_idx].to_i
+    cnt = req[:recur_params][:cnt].to_i
     tmpr_expr = Recur::DayInMonth.new(day_idx, cnt)
   end
 
   scd.add_elem Recur::ScheduleElem.new(
-    Recur::Event.new("", req_hash[:desc]),
+    Recur::Event.new("", req[:desc]),
     tmpr_expr
   )
   rec = session[:rec] || Recurring.new
