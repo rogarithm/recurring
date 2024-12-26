@@ -37,8 +37,8 @@ post "/evts" do
 end
 
 get "/evts" do
-  req_hash = {
-    :evt_arg => Recur::Event.new('', params[:evt_arg]),
+  req = {
+    :evt_arg => Recur::Event.new(params[:evt_arg]),
     :date => Date.new(*params[:date].split("-").map(&:to_i))
   }
 
