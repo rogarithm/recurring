@@ -18,7 +18,6 @@ end
 # 반복 이벤트를 추가한다
 post "/evts" do
   req = JSON.parse(request.body.read, symbolize_names: true)
-  scd = Recur::Schedule.new
 
   tmpr_expr = nil
   case req[:recur_type]
@@ -28,6 +27,7 @@ post "/evts" do
     tmpr_expr = Recur::DayInMonth.new(day_idx, cnt)
   end
 
+  scd = Recur::Schedule.new
   scd.add_elem Recur::ScheduleElem.new(
     Recur::Event.new("", req[:desc]),
     tmpr_expr
