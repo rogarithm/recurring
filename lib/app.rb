@@ -22,9 +22,7 @@ post "/evts" do
   tmpr_expr = nil
   case req[:recur_type]
   when "DayInMonth"
-    day_idx = req[:recur_params][:day_idx].to_i
-    cnt = req[:recur_params][:cnt].to_i
-    tmpr_expr = Recur::DayInMonth.new(day_idx, cnt)
+    tmpr_expr = Recur::DayInMonth.new(*req[:recur_params].values.map(&:to_i))
   end
 
   scd = Recur::Schedule.new
