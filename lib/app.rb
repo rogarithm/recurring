@@ -32,9 +32,10 @@ post "/evts" do
     Recur::Event.new("", req[:desc]),
     tmpr_expr
   )
-  rec = session[:rec] || Recurring.new
-  rec.add_schedule scd
-  session[:rec] = Marshal.dump(rec)
+
+  recur = session[:recur] || Recurring.new
+  recur.add_schedule scd
+  session[:recur] = Marshal.dump(recur)
 end
 
 get "/evts" do
@@ -43,7 +44,7 @@ get "/evts" do
     :date => Date.new(*params[:date].split("-").map(&:to_i))
   }
 
-  rec_in_session = Marshal.load(session[:rec])
+  rec_in_session = Marshal.load(session[:recur])
   rec_in_session.schedules.each do |scd|
     if scd.is_occurring req_hash[:evt_arg], req_hash[:date]
       return {
