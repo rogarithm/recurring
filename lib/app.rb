@@ -8,6 +8,8 @@ require_relative "./recurring/schedule_elem"
 require_relative "./recurring/tmpr_expr/temporal_expr"
 require_relative "./recurring/tmpr_expr/day_in_month"
 
+enable :sessions
+
 before do
   content_type :json
 end
@@ -21,7 +23,6 @@ post "/evts" do
     :day_idx => req['recur_params']['day_idx'],
     :cnt => req['recur_params']['cnt']
   }
-  rec = Recurring.new
   scd = Recur::Schedule.new
 
   tmpr_expr = nil
@@ -36,5 +37,9 @@ post "/evts" do
     Recur::Event.new("", req_hash[:desc]),
     tmpr_expr
   )
+  rec = session[:rec] || Recurring.new
   rec.add_schedule scd
+  session[:rec] = Marshal.dump(rec)
+end
+
 end
