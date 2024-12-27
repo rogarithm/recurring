@@ -1,0 +1,17 @@
+###
+POST http://localhost:4567/evts
+Content-Type: application/json
+
+{
+  "desc": "golf games",
+  "recur_type": "DayInMonth",
+  "recur_params": {
+    "day_idx": 1,
+    "cnt": 1
+  }
+}
+
+###
+GET http://localhost:4567/evts?evt_arg=golf games&date=2024-12-12
+###
+GET http://localhost:4567/evts?evt_arg=golf games&date=2024-12-2
