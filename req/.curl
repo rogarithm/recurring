@@ -1,4 +1,4 @@
-curl -X POST --location "http://localhost:4567/evt" \
+curl -X POST --location "http://localhost:4567/evts" \
        -H "Content-Type: application/json" \
        -d '{
          "desc": "golf games",
