@@ -35,6 +35,7 @@ post "/evts" do
   recur = session[:recur] || Recurring.new
   recur.add_schedule scd
   session[:recur] = Marshal.dump(recur)
+  {"evt_name" => req[:desc]}.to_json
 end
 
 get "/evts" do
